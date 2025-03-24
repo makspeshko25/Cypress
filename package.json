@@ -1,0 +1,28 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "description": "This repository is for learning Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run",
+    "test:open": "npx cypress open",
+    "test:headless": "npx cypress run --headless",
+    "test:chrome": "npx cypress run --browser chrome",
+    "test:firefox": "npx cypress run --browser firefox"
+  
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makspeshko25/Cypress.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/makspeshko25/Cypress/issues"
+  },
+  "homepage": "https://github.com/makspeshko25/Cypress#readme",
+  "devDependencies": {
+    "cypress": "^14.2.0"
+  }
+}
