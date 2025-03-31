@@ -13,7 +13,21 @@ module.exports = defineConfig({
   screenshotOnRunFailure: true,
   screenshotsFolder: "cypress/screenshots",
   e2e: {
-    baseUrl: "https://your-app.com",
+    baseUrl: "https://qauto.forstudy.space/",
+    viewportWidth: 1440,
+    viewportHeight: 900,
+    defaultCommandTimeout: 8000,
+    pageLoadTimeout: 60000,
+    retries: 2,
+
+    video: true,
+    videoCompression: 32,
+    videosFolder: "cypress/videos",
+    videoUploadOnPasses: false,
+
+    screenshotOnRunFailure: true,
+    screenshotsFolder: "cypress/screenshots",
+
     setupNodeEvents(on, config) {
       on("after:spec", (spec, results) => {
         console.log("Video recorded:", results.video);
