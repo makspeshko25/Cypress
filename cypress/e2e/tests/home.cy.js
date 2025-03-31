@@ -6,7 +6,7 @@ describe('Home Page Elements Test', () => {
     });
 
     it('should display all required elements in header section', () => {
-        HomePage.verifyFooterElements();
+        HomePage.verifyHeaderElements();
     });
     it('should display all required elements in footer section', () => {
         HomePage.verifyFooterElements();
