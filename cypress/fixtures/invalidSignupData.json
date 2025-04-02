@@ -1,0 +1,23 @@
+{
+    "invalidNames": {
+      "tooShort": "M",
+      "tooLong": "MaksymPeshkoPeshkoPeshko"
+    },
+    "invalidEmails": {
+      "missingAtSymbol": "makspeshkogmail.com",
+      "missingDomain": "makspeshko@",
+      "randomText": "randomtext"
+    },
+    "invalidPasswords": {
+      "tooShort": "Qw1$",
+      "tooLong": "Qwerty123456789012345$$$",
+      "missingUpperCase": "qwerty123$$$",
+      "missingLowerCase": "QWERTY123$$$",
+      "missingNumber": "Qwerty$$$$$",
+      "missingSpecialChar": "Qwerty123"
+    },
+    "passwordMismatch": {
+      "password": "Qwerty123$$$",
+      "reenterPassword": "Qwerty12323414"
+    }
+}

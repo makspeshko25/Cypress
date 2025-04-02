@@ -7,3 +7,32 @@ Cypress.Commands.add('loginAsGuest', () => {
     });
 });
 
+Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
+    if (options && options.sensitive) {
+      // turn off the default logging
+      options.log = false;
+      
+      // create a custom log with masked password
+      Cypress.log({
+        $el: element,
+        name: 'type',
+        message: '*'.repeat(text.length),
+      });
+    }
+  
+    // execute the original type function
+    return originalFn(element, text, options);
+  });
+
+Cypress.Commands.add('login', (email, password) => {
+    const loginModalElements = {
+        headerLoginButton: ()=> cy.get('button.btn.btn-outline-white.header_signin').filter(':contains("Sign In")'),
+        emailField: () => cy.get('#signinEmail'),
+        passwordField: () => cy.get('#signinPassword'),
+        loginButton: () => cy.contains('button', 'Login'),
+    };
+    loginModalElements.headerLoginButton().click();
+    loginModalElements.emailField().type(email);
+    loginModalElements.passwordField().type(password, { sensitive: true });
+    loginModalElements.loginButton().click();
+});
