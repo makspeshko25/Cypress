@@ -1,0 +1,9 @@
+{
+    "validUser": {
+      "name": "Maks",
+      "lastName": "Peshko",
+      "email": "makspeshko@gmail.com",
+      "password": "Qwerty123$$$",
+      "reenterPassword": "Qwerty123$$$"
+    }
+}
