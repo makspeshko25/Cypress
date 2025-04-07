@@ -5,7 +5,7 @@ class ExpensesPage {
         createExpense: () => cy.get('div > div:first-child > div > button').contains('Add an expense')
     };
     createModalElements = {
-        vehicleList: () => cy.get('select[name="carId"]').select('Audi TT'),
+        vehicleList: () => cy.get('select[name="carId"]').select('BMW 3'),
         reportDate: () => cy.get('#addExpenseDate'),
         mileageField: () => cy.get('#addExpenseMileage'),
         litersField: () => cy.get('#addExpenseLiters'),

@@ -27,11 +27,10 @@ class GaragePage {
     createModalButtons = {
         addButton: () => cy.get('.modal-footer').find('button.btn.btn-primary').contains('Add')
     }
-  
     openCreateCarForm() {
       this.addCarButton.addButton().click();
     }
-  
+
     selectBmwBrand() {
       this.brandCarList.brandBMW();
     }
@@ -42,7 +41,7 @@ class GaragePage {
         cy.get('#addCarMileage').type(150000);
     }
     saveNewVehicle(){
-        this.createModalButtons.addButton.click({ force: true });
+        this.createModalButtons.addButton().click({ force: true });
     }
   }
   
