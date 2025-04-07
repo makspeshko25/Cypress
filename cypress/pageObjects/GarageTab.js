@@ -42,7 +42,7 @@ class GaragePage {
         cy.get('#addCarMileage').type(150000);
     }
     saveNewVehicle(){
-        this.createModalButtons.addButton.click({ force: true });
+        this.createModalButtons.addButton().click({ force: true });
     }
   }
   
