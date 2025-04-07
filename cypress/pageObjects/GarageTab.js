@@ -27,11 +27,10 @@ class GaragePage {
     createModalButtons = {
         addButton: () => cy.get('.modal-footer').find('button.btn.btn-primary').contains('Add')
     }
-  
     openCreateCarForm() {
       this.addCarButton.addButton().click();
     }
-  
+
     selectBmwBrand() {
       this.brandCarList.brandBMW();
     }
