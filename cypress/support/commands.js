@@ -24,15 +24,23 @@ Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
     return originalFn(element, text, options);
   });
 
-Cypress.Commands.add('login', (email, password) => {
+  Cypress.Commands.add('login', (email, password) => {
+    const finalEmail = email || Cypress.env('defaultUserEmail');
+    const finalPassword = password || Cypress.env('defaultUserPassword');
+  
     const loginModalElements = {
-        headerLoginButton: ()=> cy.get('button.btn.btn-outline-white.header_signin').filter(':contains("Sign In")'),
-        emailField: () => cy.get('#signinEmail'),
-        passwordField: () => cy.get('#signinPassword'),
-        loginButton: () => cy.contains('button', 'Login'),
+      headerLoginButton: () => cy.get('button.btn.btn-outline-white.header_signin').filter(':contains("Sign In")'),
+      emailField: () => cy.get('#signinEmail'),
+      passwordField: () => cy.get('#signinPassword'),
+      loginButton: () => cy.contains('button', 'Login'),
     };
+  
     loginModalElements.headerLoginButton().click();
-    loginModalElements.emailField().type(email);
-    loginModalElements.passwordField().type(password, { sensitive: true });
+    loginModalElements.emailField().type(finalEmail);
+    loginModalElements.passwordField().type(finalPassword, { sensitive: true });
     loginModalElements.loginButton().click();
-});
+  });
+
+  Cypress.Commands.add('navigateToExpenses', () => {
+    cy.get('a[href="/panel/expenses"]').contains('Fuel expenses').click();
+  });

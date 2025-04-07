@@ -1,37 +1,38 @@
 const { defineConfig } = require("cypress");
+const fs = require("fs");
+const path = require("path");
+
+function getEnvConfig(envName) {
+  const configFilePath = path.resolve(__dirname, `configFiles/cypress.${envName}.config.json`);
+
+  if (fs.existsSync(configFilePath)) {
+    return JSON.parse(fs.readFileSync(configFilePath));
+  } else {
+    console.warn(`⚠️  Config file for '${envName}' not found at ${configFilePath}`);
+    return {};
+  }
+}
 
 module.exports = defineConfig({
-  viewportWidth: 1440,
-  viewportHeight: 900,
-  defaultCommandTimeout: 8000,
-  pageLoadTimeout: 60000,
-  retries: 2,
-  video: true,
-  videoCompression: 32,
-  videosFolder: "cypress/videos",
-  videoUploadOnPasses: false,
-  screenshotOnRunFailure: true,
-  screenshotsFolder: "cypress/screenshots",
+  reporter: "mochawesome",
+  reporterOptions: {
+    reportDir: "cypress/reports/mochawesome",
+    overwrite: false,
+    html: false,
+    json: true
+  },
   e2e: {
-    baseUrl: "https://qauto.forstudy.space/",
-    viewportWidth: 1440,
-    viewportHeight: 900,
-    defaultCommandTimeout: 8000,
-    pageLoadTimeout: 60000,
-    retries: 2,
-
-    video: true,
-    videoCompression: 32,
-    videosFolder: "cypress/videos",
-    videoUploadOnPasses: false,
-
-    screenshotOnRunFailure: true,
-    screenshotsFolder: "cypress/screenshots",
-
     setupNodeEvents(on, config) {
-      on("after:spec", (spec, results) => {
-        console.log("Video recorded:", results.video);
-      });
-    }
+      const envName = config.env.environment || "dev";
+      const envConfig = getEnvConfig(envName);
+
+      config.baseUrl = envConfig.baseUrl;
+      config.env = {
+        ...config.env,
+        ...envConfig.env,
+      };
+
+      return config;
+    },
   }
 });
